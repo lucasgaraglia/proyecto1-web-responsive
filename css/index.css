@@ -1,0 +1,159 @@
+
+/* paleta
+20262E negro
+913175 violeta
+CD5888 rosa
+E9E8E8 gris blanco
+
+*/
+
+/* para pantallas angostas */
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+
+/* 1 - HEADER */
+header {
+    display: flex;
+    justify-content: space-between; /* para distribuir los 3 divs en todo el ancho */
+    align-items: center; /* para que el texto quede a altura media de las img */
+    background-color: #913175;
+    color: #E9E8E8;
+    padding: 10px;
+
+    grid-area: HEA; /* nombre para trabajarlo en grid */
+}
+
+header > div > img {
+    width: 100px;
+    margin: 0px 15px; /* margin 15px laterales */
+}
+
+header > .center {
+    font-size: 25px;
+}
+
+
+/* 2 - NAVBAR */
+nav {
+    background-color: #20262E;
+    text-align: center;
+
+    grid-area: NAV; /* nombre para trabajarlo en grid */
+}
+
+nav > ul {
+    list-style: none;
+    padding: 10px;
+    margin: 0;
+}
+
+nav > ul > li {
+    display: inline-block;
+}
+
+nav > ul > li > a {
+    text-decoration: none;
+    color: #E9E8E8;
+    padding: 10px;
+    display: block; /* para que funcionen las animaciones */
+}
+
+nav > ul > li > a:hover {
+    background-color: #913175;
+    animation: 0.6s infinite nav-button;
+}
+
+@keyframes nav-button {
+    0% {transform: scaleX(1.0);}
+    50% {transform: scaleX(1.15);}
+    100% {transform: scaleX(1.0);}
+}
+
+
+/* 3 - CONTENT */
+
+/* 3.1 - MOVIE CONTAINER */
+
+.container-movie {
+    display: flex;
+    padding: 10px;
+    height: 270px; /* para que el texto descripcion no desborde mucha altura al estrecharse */
+
+}
+.container-movie > div.description {
+    overflow: hidden; /* si la descripcion desborda, que no se muestre lo sobrante */
+}
+
+
+.container-movie > div{
+    margin: 10px;
+}
+
+.container-movie img {
+    height: 250px;
+}
+
+.article-1 {
+    grid-area: ART1; /* nombre para trabajarlo en grid */
+}
+
+.article-2 {
+    grid-area: ART2; /* nombre para trabajarlo en grid */
+}
+
+/* 4 - FOOTER */
+
+footer {
+    display: flex;
+    justify-content: space-between; /* todo el espacio disponible, en el medio de los elementos */
+    align-items: center; /* centrar verticalmente */
+    padding: 0px 25px;
+    background-color: #20262E;
+    color: #E9E8E8;
+
+    grid-area: FOO; /* nombre para trabajarlo en grid */
+}
+
+footer > div.icons {
+    display: flex;
+    column-gap: 12px; /* gap between icons */
+}
+
+footer > div.icons > a {
+    color: #E9E8E8;
+    font-size: 20px;
+}
+
+/* 5 - ROOT CONTAINER STYLES - GRID */
+/* para distintas resoluciones */
+
+/* RESOLUCIONES -720PX */
+.root {
+    display: grid;
+    grid-template: repeat(5, auto) / auto; /* 5 filas auto size / 1 columna auto size (100%) */
+    grid-template-areas:    "HEA"
+                            "NAV"
+                            "ART1"
+                            "ART2"
+                            "FOO";
+}
+
+/* RESOLUCIONES +720PX */
+/* si la pantalla tiene al menos 720px de ancho, redefino estilos distribucion grid */
+@media (min-width: 720px) {
+    .root {
+        grid-template: repeat(4, auto) / repeat(2, auto); /* 5 filas auto size / 1 columna auto size (100%) */
+        grid-template-areas:    "HEA HEA"
+                                "NAV NAV"
+                                "ART1 ART2"
+                                "FOO FOO";
+    }
+
+    .container-movie {
+        height: 300px;
+    }
+}
